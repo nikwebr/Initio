@@ -1,0 +1,65 @@
+version: "3.8"
+
+name: initio-prod
+services:
+  db:
+    container_name: database-prod
+    image: mysql:8.2
+    restart: always
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_DATABASE=initio
+      - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
+    ports:
+      - '3306:3306'
+    volumes:
+      - './docker/db-prod/data:/var/lib/mysql'
+      - './docker/db-prod/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './docker/db-prod/sql:/docker-entrypoint-initdb.d'
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+
+  web:
+    image: initio-prod
+    container_name: web-prod
+    build:
+      context: .
+      dockerfile: ./apps/next/Dockerfile
+    restart: always
+    depends_on:
+      db:
+          condition: service_healthy
+    links:
+      - db
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+      PORT: 3000
+      NEXT_TELEMETRY_DISABLED: 1
+
+      # @see https://next-auth.js.org/configuration/options#nextauth_url
+      NEXTAUTH_URL: "http://localhost:3000"
+      API_ENDPOINT: "http://localhost:3000/api"
+
+      # You can generate the secret via 'openssl rand -base64 32' on Unix
+      # @see https://next-auth.js.org/configuration/options#secret
+      NEXTAUTH_SECRET: "UQmouw6qco3mUgwZ28MxApVH8uiZTkApfsle0xkmMO4="
+      # Secret for OAUTH Server
+      OAUTH_SERVER_SECRET: "UQmouw6qco3mUgwZ28MxApVH8uiZTkApfsle0xkmMO4="
+
+      # Preconfigured Discord OAuth provider, works out-of-the-box
+      # @see https://next-auth.js.org/providers/discord
+      AUTH_DISCORD_ID: "1217130934881746975"
+      AUTH_DISCORD_SECRET: "1Q9I5tP3FNBY8nIUgVSuF9sIdIIg5sHc"
+
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: mauFJcuf5dhRMQrjj
+      DATABASE: initio
+
+      #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
+      #WATCHPACK_POLLING: true
+    ports:
+      - 3000:3000

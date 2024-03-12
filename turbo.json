@@ -1,0 +1,9 @@
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "dotEnv": ["apps/next/.env"],
+      "outputs": [".next/**"]
+    }
+  }
+}

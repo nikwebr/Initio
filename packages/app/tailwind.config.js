@@ -4,10 +4,6 @@ const { theme } = require('app/design/tailwind/theme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  purge: [
-    './**/*.{js,jsx,ts,tsx}',
-  ],
   content: [
     './**/*.{js,jsx,ts,tsx}',
   ],

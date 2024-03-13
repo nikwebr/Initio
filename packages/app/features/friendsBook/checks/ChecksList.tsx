@@ -26,13 +26,13 @@ function pushNewButton(checks?: Check[]) {
 }
 
 const ChecksList = () => {
-    const checks = trpc.checks.get.useQuery()
+    const checks = trpc.getUser.useQuery()
 
     const renderItem = ({ item }: { item: Check }) => {
         return (
             <ChecksListItem
                 item={item}
-                latestItem={getLatestItem(checks.data)}
+                latestItem={getLatestItem(checks.data?.checks)}
             />
         )
     }
@@ -68,7 +68,7 @@ const ChecksList = () => {
                         marginTop: 5,
                     }}
                     renderItem={renderItem}
-                    data={pushNewButton(checks.data)}
+                    data={pushNewButton(checks.data?.checks)}
                     style={{
                         flexGrow: 0,
                     }}

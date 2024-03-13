@@ -6,15 +6,6 @@ import {getChecks} from "../lib/checks/check";
 import {getUser} from "../lib/user";
 
 export const friendsRouter = router({
-    get: authorizedProcedure.query(async (opts) => {
-        const result = await getUser(opts.ctx.userId!, true, true)
-        if (!result) {
-            throw new TRPCError({
-                code: 'INTERNAL_SERVER_ERROR',
-            })
-        }
-        return result.friends
-    }),
     invite: authorizedProcedure.mutation(async (opts) => {
         const result = await invite(opts.ctx.userId!)
         if (!result) {

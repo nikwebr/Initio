@@ -34,7 +34,7 @@ services:
           condition: service_healthy
     links:
       - db
-    command: sh -c "yarn migrations:push-local && yarn web"
+    command: sh -c "yarn migrations:push && yarn web"
     environment:
       NODE_ENV: development
       #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
@@ -44,7 +44,7 @@ services:
       DATABASE_PASSWORD: mauFJcuf5dhRMQrjj
       DATABASE: initio
     volumes:
-      - .:/app:cached
+      - .:/app
       - /app/node_modules # avoid overriding the dependencies installed by npm during the image build process with the dependencies installed on the host machine.
       - /app/apps/next/.next
     ports:

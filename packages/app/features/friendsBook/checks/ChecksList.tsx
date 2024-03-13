@@ -26,13 +26,13 @@ function pushNewButton(checks?: Check[]) {
 }
 
 const ChecksList = () => {
-    const checks = trpc.getUser.useQuery()
+    const user = trpc.getUser.useQuery()
 
     const renderItem = ({ item }: { item: Check }) => {
         return (
             <ChecksListItem
                 item={item}
-                latestItem={getLatestItem(checks.data?.checks)}
+                latestItem={getLatestItem(user.data?.checks)}
             />
         )
     }
@@ -52,7 +52,7 @@ const ChecksList = () => {
                 colorMode="light"
                 width={'100%'}
                 height={100}
-                show={checks.isLoading}
+                show={user.isLoading}
             >
                 <FlatList
                     // Saving reference to the `FlashList` instance to later trigger `prepareForLayoutAnimationRender` method.
@@ -68,7 +68,7 @@ const ChecksList = () => {
                         marginTop: 5,
                     }}
                     renderItem={renderItem}
-                    data={pushNewButton(checks.data?.checks)}
+                    data={pushNewButton(user.data?.checks)}
                     style={{
                         flexGrow: 0,
                     }}

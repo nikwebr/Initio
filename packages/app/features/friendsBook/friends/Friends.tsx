@@ -7,7 +7,7 @@ import {
     Button,
     MotiPressable,
 } from 'app/design/button'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PlusCircle } from '@nandorojo/heroicons/24/solid'
 import { StyleSheet } from 'react-native'
 import { InviteModal } from 'app/features/friendsBook/friends/InviteModal'

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { Alert, Share } from 'react-native'
 import { AnimatedPressable, Button } from 'app/design/button'
 

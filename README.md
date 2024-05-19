@@ -63,10 +63,9 @@ Yarn workspaces separate the code for the Expo & Next.js app and shared packages
 ## 🔁 Database migrations
 Changes to the database scheme must be committed by running
 ```sh
-cd packages/db
 yarn migrations:generate
 ```
-This command generates migration files. These migrations are applied automatically by restarting the container.
+This command generates migration files. The migrations are applied automatically by restarting the container.
 
 
 ## 💾 Environment variables
@@ -104,5 +103,6 @@ yarn
 Use the docker-compose.prod file to run the web app together with a MySQL database in your production environment. You may need to adjust the env variables in the docker-compose.prod file.
 
 
-
+## Debugging
+- Authentication in the Expo app throws an error like "Invalid redirect uri": Add the current Expo url (e.g. exp://192.168.178.117:8081) to `redirectUris` in `apps/next/server/lib/typescript-node-oauth-server/repositories.ts`
 

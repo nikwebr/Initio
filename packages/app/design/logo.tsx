@@ -11,7 +11,7 @@ function logo(classNames?: string) {
     return (
         <Image
             src={imgSrc}
-            contentFit="contain"
+            height={100}
             alt="Some cool logo of Initio"
             className={'h-25 w-40 ' + (classNames ? classNames : '')}
         />

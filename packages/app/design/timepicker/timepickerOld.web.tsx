@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import { TimepickerUI } from 'timepicker-ui'
 import './style.css'
 import { Props } from 'app/design/timepicker/timepicker'

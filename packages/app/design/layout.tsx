@@ -1,6 +1,4 @@
 import { styled } from 'nativewind'
-import { CheckOkay } from 'app/features/checkIn/CheckOkay'
-import { Friends } from 'app/features/friendsBook/friends/Friends'
 import { ReactNode } from 'react'
 import { View } from 'app/design/view'
 
@@ -20,7 +18,7 @@ export const Screen = ({
 }) => {
     return (
         <View className="center flex-1 items-center p-3 pt-7 md:justify-center md:pt-0">
-            <View className={'w-full' + ' ' + width}>{children}</View>
+            <View className={'' + ' ' + width}>{children}</View>
         </View>
     )
 }

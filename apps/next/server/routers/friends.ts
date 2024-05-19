@@ -2,8 +2,6 @@ import { authorizedProcedure, router } from '../trpc'
 import { z } from 'zod'
 import { TRPCError } from '@trpc/server'
 import { deleteRelation, invite } from '../lib/friend'
-import {getChecks} from "../lib/checks/check";
-import {getUser} from "../lib/user";
 
 export const friendsRouter = router({
     invite: authorizedProcedure.mutation(async (opts) => {

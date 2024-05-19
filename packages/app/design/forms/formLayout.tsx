@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { Children } from 'react'
 
 import { H1 } from 'app/design/typography'

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { RWebShare } from 'react-web-share'
 import { AnimatedPressable, Button } from 'app/design/button'
 

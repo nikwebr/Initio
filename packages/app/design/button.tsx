@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import { Text, Pressable, GestureResponderEvent } from 'react-native'
 import { styled } from 'nativewind'

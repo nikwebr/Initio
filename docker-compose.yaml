@@ -34,7 +34,7 @@ services:
           condition: service_healthy
     links:
       - db
-    command: sh -c "yarn web"
+    command: sh -c "yarn migrations:push;yarn web"
     environment:
       NODE_ENV: development
 

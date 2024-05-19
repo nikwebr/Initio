@@ -27,7 +27,6 @@ export const users = mySqlTable('user', {
 export const usersRelations = relations(users, ({ many }) => ({
     accounts: many(accounts),
     checks: many(checks),
-    friends: many(friends, { relationName: 'friend' }),
 }))
 
 export const accounts = mySqlTable(

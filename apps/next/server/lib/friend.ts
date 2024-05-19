@@ -4,7 +4,7 @@ import { generate } from 'randomstring'
 import { db } from 'db'
 import { invitations } from 'db/schema/invitations'
 import User from './types/user'
-import { and, eq } from 'drizzle-orm'
+import {and, eq, or} from 'drizzle-orm'
 import {friends} from "db/schema/friends";
 
 type UserDB = typeof users.$inferSelect
@@ -51,8 +51,8 @@ export async function acceptInvitation(code: string, friendId: string) {
     }
 
     const insertRes = await db.insert(friends).values({
-        userId: invitation.invitedByUser,
-        friendId: friendId
+        friendId1: invitation.invitedByUser,
+        friendId2: friendId
     })
 
     if (insertRes[0].affectedRows <= 0) {
@@ -67,29 +67,46 @@ export async function acceptInvitation(code: string, friendId: string) {
 }
 
 export async function deleteRelation(friendId: string, userId: string) {
+
     const deleteRes = await db
         .delete(friends)
         .where(
-            and(
-                eq(friends.userId, userId),
-                eq(friends.friendId, friendId),
-            ),
+            or(and(
+                eq(friends.friendId1, userId),
+                eq(friends.friendId2, friendId),
+            ), and(
+                eq(friends.friendId2, userId),
+                eq(friends.friendId1, friendId),
+            ))
         )
     return deleteRes[0].affectedRows > 0
 }
 
+export async function getFriends(userId: string) {
+    const friends1 = await db.query.friends.findMany({
+        where: eq(friends.friendId1, userId),
+        with: {
+            friend2: true
+        }
+    })
 
-/**
- * Converts a DB object to corresponding lib type
- * @param guard
- */
-export function toFriend(friend: FriendDB): User {
-    return toUser(friend.friend)
-}
-export function toFriends(friends: FriendDB[]): User[] {
+    const friends2 = await db.query.friends.findMany({
+        where: eq(friends.friendId2, userId),
+        with: {
+            friend1: true
+        }
+    })
+
     const results: User[] = []
-    for (const friend of friends) {
-        results.push(toFriend(friend))
+
+    for (const friend of friends1) {
+        results.push(toUser(friend.friend2))
     }
+    for (const friend of friends2) {
+        results.push(toUser(friend.friend1))
+    }
+
     return results
 }
+
+

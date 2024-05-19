@@ -3,7 +3,7 @@ import { eq } from 'drizzle-orm'
 import { toChecks } from './checks/check'
 import { db } from 'db'
 import { users } from 'db/schema/auth'
-import {toFriends} from "./friend";
+import {getFriends} from "./friend";
 
 type UserDB = typeof users.$inferSelect
 
@@ -16,17 +16,22 @@ export async function getUser(
         where: eq(users.id, userId),
         with: {
             checks: !withChecks ? undefined : true,
-            friends: !withFriends ? undefined : { with: { friend: true } },
         },
     })
 
     if (user) {
+        let friends = undefined
+
+        if(withFriends) {
+            friends = await getFriends(userId)
+        }
+
         const returnUser: User = {
             ...toUser(user),
             checks: !withChecks ? undefined : toChecks(user.checks),
-            // @ts-ignore
-            friends: !withFriends ? undefined : toFriends(user.friends),
+            friends: !withFriends ? undefined : friends
         }
+
 
         return returnUser
     }

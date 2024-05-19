@@ -17,6 +17,8 @@
   "scripts": {
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next",
+    "migrations:generate": "cd packages/db && yarn migrations:generate",
+    "migrations:push": "cd packages/db && yarn migrations:push",
     "lint": "eslint ."
   },
   "resolutions": {

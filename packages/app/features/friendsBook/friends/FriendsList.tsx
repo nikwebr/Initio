@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { View } from 'app/design/view'
 import { trpc } from 'app/provider/trpc-client'
 import { FlatList } from 'react-native'

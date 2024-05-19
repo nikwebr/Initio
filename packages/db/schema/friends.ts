@@ -11,13 +11,13 @@ import { users } from './auth'
 export const friends = mySqlTable(
     'friends',
     {
-        userId: varchar('userId', { length: 255 })
+        friendId1: varchar('friendId1', { length: 255 })
             .notNull()
             .references(() => users.id, {
                 onDelete: 'cascade',
                 onUpdate: 'cascade',
             }),
-        friendId: varchar('invitedUserId', { length: 255 })
+        friendId2: varchar('friendId2', { length: 255 })
             .notNull()
             .references(() => users.id, {
                 onDelete: 'cascade',
@@ -30,21 +30,19 @@ export const friends = mySqlTable(
     (table) => {
         return {
             pk: primaryKey({
-                columns: [table.userId, table.friendId],
+                columns: [table.friendId1, table.friendId2],
             }),
         }
     },
 )
 
 export const friendsRelations = relations(friends, ({ one }) => ({
-    friend: one(users, {
-        fields: [friends.friendId],
+    friend1: one(users, {
+        fields: [friends.friendId1],
         references: [users.id],
-        relationName: 'friend',
     }),
-    user: one(users, {
-        fields: [friends.userId],
+    friend2: one(users, {
+        fields: [friends.friendId2],
         references: [users.id],
-        relationName: 'user',
     }),
 }))

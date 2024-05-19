@@ -248,10 +248,10 @@ export class UserRepository implements OAuthUserRepository {
 export class ClientRepository implements OAuthClientRepository {
     // Fetch client entity from storage by client_id
     async getByIdentifier(clientId: string): Promise<OAuthClient> {
-        if (clientId === 'BeingWellApp') {
+        if (clientId === 'Initio') {
             return {
-                id: 'BeingWellApp',
-                name: 'App for BeingWell',
+                id: 'Initio',
+                name: 'App for Initio',
                 redirectUris: [
                     'exp://192.168.178.150:8081',
                     'exp://192.168.0.247:8081',

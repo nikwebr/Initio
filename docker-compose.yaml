@@ -37,6 +37,22 @@ services:
     command: sh -c "yarn web"
     environment:
       NODE_ENV: development
+
+      # @see https://next-auth.js.org/configuration/options#nextauth_url
+      NEXTAUTH_URL: "http://localhost:3000"
+      API_ENDPOINT: "http://localhost:3000/api"
+
+      # You can generate the secret via 'openssl rand -base64 32' on Unix
+      # @see https://next-auth.js.org/configuration/options#secret
+      NEXTAUTH_SECRET: "UQmouw6qco3mUgwZ28MxApVH8uiZTkApfsle0xkmMO4="
+      # Secret for OAUTH Server
+      OAUTH_SERVER_SECRET: "UQmouw6qco3mUgwZ28MxApVH8uiZTkApfsle0xkmMO4="
+
+      # Preconfigured Discord OAuth provider, works out-of-the-box
+      # @see https://next-auth.js.org/providers/discord
+      AUTH_DISCORD_ID: "1217130934881746975"
+      AUTH_DISCORD_SECRET: "1Q9I5tP3FNBY8nIUgVSuF9sIdIIg5sHc"
+
       #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
       #WATCHPACK_POLLING: true
       DATABASE_URL: "mysql://root:mauFJcuf5dhRMQrjj@db/initio"

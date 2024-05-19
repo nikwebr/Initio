@@ -42,7 +42,7 @@ export const authOptions = {
                         body: JSON.stringify({
                             personalizations: [{ to: [{ email }] }],
                             from: { email: 'noreply@company.com' },
-                            subject: 'Sign in to BeingWellApp',
+                            subject: 'Sign in to Initio',
                             content: [
                                 {
                                     type: 'text/plain',

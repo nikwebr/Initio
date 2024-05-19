@@ -10,7 +10,6 @@
     "push": "drizzle-kit push:mysql",
     "migrations:generate": "drizzle-kit generate:mysql",
     "migrations:push": "node ./migrate.js",
-    "migrations:push-local": "dotenv -e ../../apps/next/.env -e ../../apps/next/.env -- node dist/bundle.js",
     "migrations:drop": "drizzle-kit drop",
     "studio": "drizzle-kit studio",
     "typecheck": "tsc --noEmit",

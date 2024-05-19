@@ -6,11 +6,11 @@
 
 <p align="center">
   <a href="#technology-stack">Key Features</a> •
-  <a href="#repo-structure">Structure</a> •
-  <a href="#start-the-app">Start the app</a> •
-  <a href="#deployment-of-next.js-app">Deployment</a> •
-  <a href="#database-migrations">Migrations</a> •
-  MIT licensed
+  <a href="#-repo-structure">Structure</a> •
+  <a href="#-start-the-app">Start the app</a> •
+  <a href="#-deployment-of-nextjs-app">Deployment</a> •
+  <a href="#-database-migrations">Migrations</a> •
+<a href="Initio?tab=MIT-1-ov-file">MIT licensed</a>
 </p>
 
 

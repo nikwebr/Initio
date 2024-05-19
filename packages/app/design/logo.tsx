@@ -5,13 +5,14 @@ import { MotiView } from 'moti'
 type LogoProps = {
     doAnimate?: boolean
     className?: string
+    height?: number
 }
 
-function logo(classNames?: string) {
+function logo(classNames?: string, height = 100) {
     return (
         <Image
             src={imgSrc}
-            height={100}
+            height={height}
             alt="Some cool logo of Initio"
             className={'h-25 w-40 ' + (classNames ? classNames : '')}
         />
@@ -35,9 +36,9 @@ export function Logo(props: LogoProps) {
                     },
                 }}
             >
-                {logo(props.className)}
+                {logo(props.className, props.height)}
             </MotiView>
         )
     }
-    return logo(props.className)
+    return logo(props.className, props.height)
 }

@@ -7,7 +7,7 @@ export interface NativeAuthContext extends CommonAuthContext {
 export type CommonAuthContext = {
     signOut: () => Promise<boolean>
     signIn: () => Promise<boolean>
-    user?: User
+    isLoggedIn: boolean
     isLoading: boolean
 }
 

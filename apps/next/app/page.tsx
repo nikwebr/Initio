@@ -10,7 +10,6 @@ export default function HomeScreen() {
     if (isLoading) {
         return <ActivityIndicator />
     } else if (!user) {
-        return <SignInScreen />
     }
     return <Screen />
 }

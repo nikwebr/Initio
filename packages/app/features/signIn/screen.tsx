@@ -8,9 +8,9 @@ import { Button } from 'app/design/button'
 import { Logo } from 'app/design/logo'
 
 export function SignInScreen() {
-    const { signIn, isLoading } = useAuth()!
+    const { signIn, isLoading, isLoggedIn } = useAuth()!
 
-    if (isLoading) {
+    if (isLoading && isLoggedIn) {
         return <ActivityIndicator />
     }
 

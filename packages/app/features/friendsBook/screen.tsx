@@ -5,17 +5,18 @@ import { View } from 'app/design/view'
 import ChecksList from 'app/features/friendsBook/checks/ChecksList'
 import { Screen, VSpacer } from 'app/design/layout'
 import { Friends } from 'app/features/friendsBook/friends/Friends'
-import {TextLink} from "solito/link";
-import FriendsList from "app/features/friendsBook/friends/FriendsList";
 import {MotiPressable} from "app/design/button";
 import {useAuth} from "app/provider/auth-context";
+import {BackButton} from "app/design/backbutton/backbutton";
+import {trpc} from "app/provider/trpc-client";
 
 export function FriendsBookScreen() {
-    const { user, signOut } = useAuth()!
+    const { signOut } = useAuth()!
+    const user = trpc.getUser.useQuery()
     return (
         <Screen width="max-w-2xl">
             <View className="w-full">
-                <TextLink href="/"><Text className="text-base font-semibold">👈 Go back</Text></TextLink>
+                <BackButton />
 
                 <Friends />
 
@@ -27,7 +28,7 @@ export function FriendsBookScreen() {
                 <VSpacer />
 
                 <View className="center items-center">
-                    <MotiPressable onPress={() => signOut()}><Text className="text-base font-semibold">🔐 Sign out</Text></MotiPressable>
+                    <MotiPressable onPress={() => signOut()}><Text className="text-base font-semibold">🔐 {user && user.data ? user.data.name : ""} - Sign out</Text></MotiPressable>
                 </View>
 
 

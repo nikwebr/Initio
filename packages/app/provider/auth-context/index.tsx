@@ -4,7 +4,7 @@ import React from 'react'
 import { CommonAuthContext } from 'app/provider/auth-context/types'
 import { useSession, getSession } from 'next-auth/react'
 import { signOut, signIn } from 'next-auth/react'
-
+import { useRouter } from 'solito/navigation'
 const AuthContext = React.createContext<CommonAuthContext | null>(null)
 
 // This hook can be used to access the user info.
@@ -20,7 +20,13 @@ export function useAuth() {
 }
 
 export function AuthProvider(props: React.PropsWithChildren) {
-    const { data: session, status, update } = useSession()
+    const router = useRouter()
+    const { data: session, status, update,  } = useSession({
+        required: true,
+        onUnauthenticated() {
+            router.replace('/sign-in')
+        },
+    })
 
     const authValue = {
         signIn: async () => {
@@ -31,7 +37,7 @@ export function AuthProvider(props: React.PropsWithChildren) {
             await signOut()
             return true
         },
-        user: session?.user,
+        isLoggedIn: status == "authenticated",
         isLoading: status === 'loading',
     }
 

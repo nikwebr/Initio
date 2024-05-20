@@ -1,7 +1,7 @@
 
 
 <h1 align="center">
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="packages/app/design/assets/Initio.png" alt="Markdownify" width="200"></a>
+  <img src="packages/app/design/assets/Initio.png" alt="Markdownify" width="200">
   <img src="./screenshot.svg">
 </h1>
 

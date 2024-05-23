@@ -1,6 +1,11 @@
+
+
 <h1 align="center">
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="packages/app/design/assets/Initio.png" alt="Markdownify" width="200"></a>
+  <img src="packages/app/design/assets/Initio.png" alt="Markdownify" width="200">
+  <img src="./screenshot.svg">
 </h1>
+
+
 
 <h4 align="center">A starter for a Next.js & Expo monorepo with shared UI components and logic, preconfigured tRPC and authentication, Drizzle & Solito.</h4>
 
@@ -10,8 +15,9 @@
   <a href="#-start-the-app">Start the app</a> •
   <a href="#-deployment-of-nextjs-app">Deployment</a> •
   <a href="#-database-migrations">Migrations</a> •
-<a href="Initio?tab=MIT-1-ov-file">MIT licensed</a>
+<a href="LICENSE.md">MIT licensed</a>
 </p>
+
 
 
 Many thanks to [@FernandoTheRojo](https://twitter.com/fernandotherojo) for Solito and the Solito starter monorepo which this was forked from.

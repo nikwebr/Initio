@@ -13,9 +13,9 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - './docker/db-dev/data:/var/lib/mysql'
-      - './docker/db-dev/my.cnf:/etc/mysql/conf.d/my.cnf'
-      - './docker/db-dev/sql:/docker-entrypoint-initdb.d'
+      - './data/db-dev/data:/var/lib/mysql'
+      - './data/db-dev/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './data/db-dev/sql:/docker-entrypoint-initdb.d'
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 20s
@@ -24,10 +24,7 @@ services:
   web:
     image: initio-dev
     container_name: web-dev
-    build:
-      context: .
-      target: install
-      dockerfile: ./apps/next/Dockerfile
+    build: ./apps/next/docker/dev
     restart: always
     depends_on:
       db:
@@ -58,7 +55,6 @@ services:
       DATABASE_URL: "mysql://root:mauFJcuf5dhRMQrjj@db/initio"
     volumes:
       - .:/app
-      - /app/node_modules # avoid overriding the dependencies installed by npm during the image build process with the dependencies installed on the host machine.
       - /app/apps/next/.next
     ports:
       - 3000:3000

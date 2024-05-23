@@ -13,9 +13,9 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - './docker/db-prod/data:/var/lib/mysql'
-      - './docker/db-prod/my.cnf:/etc/mysql/conf.d/my.cnf'
-      - './docker/db-prod/sql:/docker-entrypoint-initdb.d'
+      - './data/db-prod/data:/var/lib/mysql'
+      - './data/db-prod/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './data/db-prod/sql:/docker-entrypoint-initdb.d'
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 20s
@@ -26,7 +26,7 @@ services:
     container_name: web-prod
     build:
       context: .
-      dockerfile: ./apps/next/Dockerfile
+      dockerfile: ./apps/next/docker/prod/Dockerfile
     restart: always
     depends_on:
       db:

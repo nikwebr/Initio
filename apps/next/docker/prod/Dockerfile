@@ -41,7 +41,6 @@ COPY --from=builder /app/apps/next/package.json .
 
 # include db package in final image for running migrations on remote system
 COPY --from=builder /app/packages/db ./packages/db
-COPY --from=start /app/Procfile ./Procfile
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
